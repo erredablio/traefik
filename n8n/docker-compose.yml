@@ -6,6 +6,9 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=n8n
+      - POSTGRES_NON_ROOT_USER=n8n
+      - POSTGRES_NON_ROOT_PASSWORD=n8n
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
     ports:
@@ -57,13 +60,12 @@ services:
       - NODE_ENV=production
       - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
-     # - DB_TYPE=postgresdb
-     # - DB_POSTGRESDB_DATABASE=n8n
-     # - DB_POSTGRESDB_HOST=172.19.0.3
-     # - DB_POSTGRESDB_PORT=5432
-     # - DB_POSTGRESDB_USER=postgres
-     # - DB_POSTGRESDB_PASSWORD=postgres
-     # - DB_POSTGRESDB_SCHEMA=n8n
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD=n8n
     volumes:
       - n8n_data:/home/node/.n8n
     networks:
